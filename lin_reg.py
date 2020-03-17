@@ -1,17 +1,19 @@
 import numpy as np
+import pandas as pd
 
 def NN(x,y):
     global y1
     
     inp = x
-    w1 = np.random.rand(1,3)
-    w1 = np.transpose(w1)
-    b = np.random.randint(0,5)
-    y1 = np.dot(inp,w1)+b
-    y1 = np.transpose(y1)
-   
+    
+    w1 = np.random.rand(2,1)
+    b = np.random.rand()
+    
+    y1 = np.dot(inp,w1) + b 
+    #print(y1.shape)
+    
     lr = 0.05
-    epochs = 1
+    epochs = 10
     
     for i in range(epochs):
         y1 = np.dot(inp,w1)+b
@@ -20,22 +22,21 @@ def NN(x,y):
         w1 = w1 - lr*D_w1  # Update w1
         b = b - lr*D_b  # Update b
 
-    y1 = np.dot(inp,w1)+b
-    y1 = np.transpose(y1)
+    y1 = np.dot(inp,w1) + b
     loss(y,y1)
-    
+
 
 def loss(y,y1):
-    #print(y)
-    #print(y1)
+    print(y)
+    print(y1)
     e=(y-y1)**2
-    print(e)
+    #print(e)
 
     
 if __name__ == "__main__" :
     
-    x = np.random.randint(20,size=(5, 3))
-    y = np.random.randint(20,size =(1,5))
+    x = np.random.randint(20,size=(3,2))
+    y = np.random.randint(20,size =(3,1))
     NN(x,y)
     
     
